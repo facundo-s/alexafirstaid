@@ -34,6 +34,9 @@
 
 NeedHelp I need help with {choking|Problem}
 NeedHelp help me with {choking|Problem}
+NeedHelp I need help with {checking an injured adult|Problem}
+NeedHelp theyre injured (injured|Problem)
+NeedHelp someones injured {injured|Problem}
 
 WhatCanISay what can I say
 

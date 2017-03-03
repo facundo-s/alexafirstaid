@@ -75,6 +75,57 @@ def handle_session_end_request():
 def create_favorite_color_attributes(favorite_color):
     return {"favoriteColor": favorite_color}
 
+def wrong_output(sentence, intent, session):
+    # This function makes sentence the output of Alexa
+    card_title = intent['name']
+    session_attributes = {}
+    should_end_session = False
+
+    speech_output = sentence
+    reprompt_text = sentence
+
+    return build_response(session_attributes, build_speechlet_response(
+        card_title, speech_output, reprompt_text, should_end_session))
+
+
+def get_help(intent, session):
+
+    problem = intent['slots']['Problem']['value']
+
+    # card_title = intent['name']
+    # session_attributes = {}
+    # should_end_session = False
+
+    # speech_output = problem
+    # reprompt_text = "Call 911."
+
+    # return build_response(session_attributes, build_speechlet_response(
+    #     card_title, speech_output, reprompt_text, should_end_session))
+
+    if 'cpr' in problem:
+        #Perform CPR
+        return wrong_output('sjldfhalksdjfhlka', intent, session)
+    elif 'choking' in problem:
+        if 'unconcious' in problem:
+            # unconcious choking
+            return call_911(intent, session)
+        elif 'concious' in problem:
+            # concious choking
+            return call_911(intent, session)
+        else:
+            #ask what kind
+            return wrong_output('sjldfhalksdjfhlka', intent, session)
+    elif (('injured' in problem) or ('aed' in problem) or ('bleeding' in problem) or ('burn' in problem) or ('poison' in problem) or ('neck' in problem) or ('spinal' in problem) or ('stroke' in problem)):
+        return call_911(intent, session)
+    else:
+        speech_output = "I'm not sure I understand what you need help with. "\
+                    "You can say 'Help me with': "\
+                    "Checking an injured adult, choking, CPR, AED, controlling bleeding, " \
+                    "Burns, Poisoning, Neck injuries, spinal injuries or strokes."
+        return wrong_output(speech_output, intent, session)           
+
+    return call_911(intent, session)
+
 def call_911(intent, session):
     card_title = intent['name']
     session_attributes = {}
@@ -94,7 +145,10 @@ def what_can_I_say(intent, session):
     speech_output = "You can say 'Help me with': "\
                     "Checking an injured adult, choking, CPR, AED, controlling bleeding, " \
                     "Burns, Poisoning, Neck injuries, spinal injuries or strokes."
-    reprompt_text = "Call 911."
+    reprompt_text = "I'm not sure I understand what you need help with. "\
+                    "You can say 'Help me with': "\
+                    "Checking an injured adult, choking, CPR, AED, controlling bleeding, " \
+                    "Burns, Poisoning, Neck injuries, spinal injuries or strokes."
 
     return build_response(session_attributes, build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
@@ -181,7 +235,7 @@ def on_intent(intent_request, session):
     if intent_name == "MyColorIsIntent":
         return set_color_in_session(intent, session)
     elif intent_name == "NeedHelp":
-        return call_911(intent, session)
+        return get_help(intent, session)
     elif intent_name == "WhatCanISay":
         return what_can_I_say(intent, session)
     elif intent_name == "WhatsMyColorIntent":

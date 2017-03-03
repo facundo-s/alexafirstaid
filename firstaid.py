@@ -86,6 +86,19 @@ def call_911(intent, session):
     return build_response(session_attributes, build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
 
+def what_can_I_say(intent, session):
+    card_title = intent['name']
+    session_attributes = {}
+    should_end_session = False
+
+    speech_output = "You can say 'Help me with': "\
+                    "Checking an injured adult, choking, CPR, AED, controlling bleeding, " \
+                    "Burns, Poisoning, Neck injuries, spinal injuries or strokes."
+    reprompt_text = "Call 911."
+
+    return build_response(session_attributes, build_speechlet_response(
+        card_title, speech_output, reprompt_text, should_end_session))
+
 def set_color_in_session(intent, session):
     """ Sets the color in the session and prepares the speech to reply to the
     user.
@@ -169,6 +182,8 @@ def on_intent(intent_request, session):
         return set_color_in_session(intent, session)
     elif intent_name == "NeedHelp":
         return call_911(intent, session)
+    elif intent_name == "WhatCanISay":
+        return what_can_I_say(intent, session)
     elif intent_name == "WhatsMyColorIntent":
         return get_color_from_session(intent, session)
     elif intent_name == "AMAZON.HelpIntent":

@@ -10,6 +10,10 @@
       ]
     },
     {
+      "intent":"WhatCanISay",
+      "slots":[]
+    },
+    {
       "intent":"MyColorIsIntent",
       "slots":[
         {
@@ -28,9 +32,8 @@
 
 
 
-NeedHelp I need help with {checking an injured adult|Problem}
 NeedHelp I need help with {choking|Problem}
-NeedHelp I need help with {AED|Problem}
+NeedHelp help me with {choking|Problem}
 
 WhatCanISay what can I say
 

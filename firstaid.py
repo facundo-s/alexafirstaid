@@ -92,20 +92,10 @@ def get_help(intent, session):
 
     problem = intent['slots']['Problem']['value']
 
-    # card_title = intent['name']
-    # session_attributes = {}
-    # should_end_session = False
-
-    # speech_output = problem
-    # reprompt_text = "Call 911."
-
-    # return build_response(session_attributes, build_speechlet_response(
-    #     card_title, speech_output, reprompt_text, should_end_session))
-
     if 'cpr' in problem:
         #Perform CPR
         return wrong_output('sjldfhalksdjfhlka', intent, session)
-    elif 'choking' in problem:
+    elif ('choking' in problem) or 'choking' in session['attributes']:
         if 'unconcious' in problem:
             # unconcious choking
             return call_911(intent, session)
@@ -114,7 +104,16 @@ def get_help(intent, session):
             return call_911(intent, session)
         else:
             #ask what kind
-            return wrong_output('sjldfhalksdjfhlka', intent, session)
+            
+            card_title = intent['name']
+            session_attributes = {"choking":True}
+            should_end_session = False
+
+            speech_output = ""
+            reprompt_text = "Is the victim concious or unconcious?"
+
+            return build_response(session_attributes, build_speechlet_response(
+                card_title, speech_output, reprompt_text, should_end_session))
     elif (('injured' in problem) or ('aed' in problem) or ('bleeding' in problem) or ('burn' in problem) or ('poison' in problem) or ('neck' in problem) or ('spinal' in problem) or ('stroke' in problem)):
         return call_911(intent, session)
     else:

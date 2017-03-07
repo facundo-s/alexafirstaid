@@ -137,6 +137,10 @@ def cpr_help(intent, session):
                     session['attributes']['compressions'] = True
                     session['attributes']['cpr_first'] = False
                     return create_cpr_output(intent, session)
+            elif value == 'stop':
+                session['attributes']={}
+                return create_output("", intent, session)
+
 
     else:
         session['attributes']['cpr'] = True

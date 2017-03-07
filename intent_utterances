@@ -52,6 +52,8 @@ NeedHelp the victim is concious {concious|Problem}
 CPR {ready|Stage}
 CPR {done|Stage}
 CPR How do I do {compressions|Stage}
+CPR stop cpr {stop|Stage}
+CPR quit cpr {stop|Stage}
 
 
 

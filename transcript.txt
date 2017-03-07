@@ -1,0 +1,244 @@
+USER: I need help with AED.
+ALEXA: Call 911.
+
+{
+  "session": {
+    "sessionId": "SessionId.37c8b610-93f0-480e-a3f5-f2cfc8dce689",
+    "application": {
+      "applicationId": "amzn1.ask.skill.6f4d98d7-5d58-4f7a-ab9f-6cf9888414d7"
+    },
+    "attributes": {
+      "cpr": true,
+      "cpr_first": true,
+      "compressions": false,
+      "choking": true
+    },
+    "user": {
+      "userId": "amzn1.ask.account.AHTZZSWEMA32WKWMR6K7T3JA7HMUJD43F23G62CUMEVLWVBAGYWGMZZOLHU4OBEHNVEMD7LU6G5JEZIM3MKPPIEZSURXQISSO3DHTGCCAFTOCRTAY6YA2IE5I3X3GH3CHJZIBHVI2YAD4OTWFYG4O4HZHMNCLONMPHLF7P5QRC3ECUFWHMLDSKNLPQ4OEJRTII7EN4PJT6ZSSYY"
+    },
+    "new": false
+  },
+  "request": {
+    "type": "IntentRequest",
+    "requestId": "EdwRequestId.e1e72e74-3dbc-4423-989a-902e17880935",
+    "locale": "en-US",
+    "timestamp": "2017-03-07T05:42:24Z",
+    "intent": {
+      "name": "NeedHelp",
+      "slots": {
+        "Problem": {
+          "name": "Problem",
+          "value": "AED"
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}
+
+
+{
+  "version": "1.0",
+  "response": {
+    "outputSpeech": {
+      "type": "PlainText",
+      "text": ""
+    },
+    "card": {
+      "content": "SessionSpeechlet - ",
+      "title": "SessionSpeechlet - NeedHelp",
+      "type": "Simple"
+    },
+    "reprompt": {
+      "outputSpeech": {
+        "type": "PlainText",
+        "text": "Is the victim concious or unconcious?"
+      }
+    },
+    "shouldEndSession": false
+  },
+  "sessionAttributes": {
+    "choking": true
+  }
+}
+
+
+
+USER: Help me with choking.
+ALEXA: Is the victim conscious or unconscious?
+USER: The victim is conscious.
+ALEXA: Call 911.
+
+
+{
+  "session": {
+    "sessionId": "SessionId.37c8b610-93f0-480e-a3f5-f2cfc8dce689",
+    "application": {
+      "applicationId": "amzn1.ask.skill.6f4d98d7-5d58-4f7a-ab9f-6cf9888414d7"
+    },
+    "attributes": {
+      "choking": true
+    },
+    "user": {
+      "userId": "amzn1.ask.account.AHTZZSWEMA32WKWMR6K7T3JA7HMUJD43F23G62CUMEVLWVBAGYWGMZZOLHU4OBEHNVEMD7LU6G5JEZIM3MKPPIEZSURXQISSO3DHTGCCAFTOCRTAY6YA2IE5I3X3GH3CHJZIBHVI2YAD4OTWFYG4O4HZHMNCLONMPHLF7P5QRC3ECUFWHMLDSKNLPQ4OEJRTII7EN4PJT6ZSSYY"
+    },
+    "new": false
+  },
+  "request": {
+    "type": "IntentRequest",
+    "requestId": "EdwRequestId.92586eaa-b089-44ca-a7bb-b4401bffce0d",
+    "locale": "en-US",
+    "timestamp": "2017-03-07T05:43:39Z",
+    "intent": {
+      "name": "NeedHelp",
+      "slots": {
+        "Problem": {
+          "name": "Problem",
+          "value": "choking"
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}
+
+{
+  "version": "1.0",
+  "response": {
+    "outputSpeech": {
+      "type": "PlainText",
+      "text": ""
+    },
+    "card": {
+      "content": "SessionSpeechlet - ",
+      "title": "SessionSpeechlet - NeedHelp",
+      "type": "Simple"
+    },
+    "reprompt": {
+      "outputSpeech": {
+        "type": "PlainText",
+        "text": "Is the victim concious or unconcious?"
+      }
+    },
+    "shouldEndSession": false
+  },
+  "sessionAttributes": {
+    "choking": true
+  }
+}
+
+{
+  "session": {
+    "sessionId": "SessionId.37c8b610-93f0-480e-a3f5-f2cfc8dce689",
+    "application": {
+      "applicationId": "amzn1.ask.skill.6f4d98d7-5d58-4f7a-ab9f-6cf9888414d7"
+    },
+    "attributes": {
+      "choking": true
+    },
+    "user": {
+      "userId": "amzn1.ask.account.AHTZZSWEMA32WKWMR6K7T3JA7HMUJD43F23G62CUMEVLWVBAGYWGMZZOLHU4OBEHNVEMD7LU6G5JEZIM3MKPPIEZSURXQISSO3DHTGCCAFTOCRTAY6YA2IE5I3X3GH3CHJZIBHVI2YAD4OTWFYG4O4HZHMNCLONMPHLF7P5QRC3ECUFWHMLDSKNLPQ4OEJRTII7EN4PJT6ZSSYY"
+    },
+    "new": false
+  },
+  "request": {
+    "type": "IntentRequest",
+    "requestId": "EdwRequestId.d5c66378-e50e-4cd8-8296-e6ae42ceb2a0",
+    "locale": "en-US",
+    "timestamp": "2017-03-07T05:44:42Z",
+    "intent": {
+      "name": "NeedHelp",
+      "slots": {
+        "Problem": {
+          "name": "Problem",
+          "value": "conscious"
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}
+
+
+
+{
+  "version": "1.0",
+  "response": {
+    "outputSpeech": {
+      "type": "PlainText",
+      "text": "Call 911."
+    },
+    "card": {
+      "content": "SessionSpeechlet - Call 911.",
+      "title": "SessionSpeechlet - NeedHelp",
+      "type": "Simple"
+    },
+    "reprompt": {
+      "outputSpeech": {
+        "type": "PlainText",
+        "text": "Call 911."
+      }
+    },
+    "shouldEndSession": false
+  },
+  "sessionAttributes": {}
+}
+
+
+USER: Someone’s injured.
+ALEXA: Call 911.
+
+{
+  "session": {
+    "sessionId": "SessionId.37c8b610-93f0-480e-a3f5-f2cfc8dce689",
+    "application": {
+      "applicationId": "amzn1.ask.skill.6f4d98d7-5d58-4f7a-ab9f-6cf9888414d7"
+    },
+    "attributes": {},
+    "user": {
+      "userId": "amzn1.ask.account.AHTZZSWEMA32WKWMR6K7T3JA7HMUJD43F23G62CUMEVLWVBAGYWGMZZOLHU4OBEHNVEMD7LU6G5JEZIM3MKPPIEZSURXQISSO3DHTGCCAFTOCRTAY6YA2IE5I3X3GH3CHJZIBHVI2YAD4OTWFYG4O4HZHMNCLONMPHLF7P5QRC3ECUFWHMLDSKNLPQ4OEJRTII7EN4PJT6ZSSYY"
+    },
+    "new": false
+  },
+  "request": {
+    "type": "IntentRequest",
+    "requestId": "EdwRequestId.8026875d-c7de-49e7-892f-e0f00c1e39e6",
+    "locale": "en-US",
+    "timestamp": "2017-03-07T05:45:25Z",
+    "intent": {
+      "name": "NeedHelp",
+      "slots": {
+        "Problem": {
+          "name": "Problem",
+          "value": "injured"
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}
+
+
+
+{
+  "version": "1.0",
+  "response": {
+    "outputSpeech": {
+      "type": "PlainText",
+      "text": "Call 911."
+    },
+    "card": {
+      "content": "SessionSpeechlet - Call 911.",
+      "title": "SessionSpeechlet - NeedHelp",
+      "type": "Simple"
+    },
+    "reprompt": {
+      "outputSpeech": {
+        "type": "PlainText",
+        "text": "Call 911."
+      }
+    },
+    "shouldEndSession": false
+  },
+  "sessionAttributes": {}
+}

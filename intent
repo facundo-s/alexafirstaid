@@ -1,0 +1,29 @@
+{
+  "intents":[
+    {
+      "intent": "CPR",
+      "slots":[
+      {
+      "name": "Stage",
+      "type": "LITERAL"
+    }
+      ]
+    },
+    {
+      "intent":"NeedHelp",
+      "slots":[
+        {
+         "name": "Problem",
+       	 "type": "LITERAL" 
+        }
+      ]
+    },
+    {
+      "intent":"WhatCanISay",
+      "slots":[]
+    }
+  ]
+}
+
+
+

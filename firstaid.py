@@ -75,10 +75,10 @@ def handle_session_end_request():
 def create_favorite_color_attributes(favorite_color):
     return {"favoriteColor": favorite_color}
 
-def wrong_output(sentence, intent, session):
+def create_output(sentence, intent, session):
     # This function makes sentence the output of Alexa
     card_title = intent['name']
-    session_attributes = {}
+    session_attributes = session['attributes']
     should_end_session = False
 
     speech_output = sentence
@@ -87,20 +87,98 @@ def wrong_output(sentence, intent, session):
     return build_response(session_attributes, build_speechlet_response(
         card_title, speech_output, reprompt_text, should_end_session))
 
+def create_cpr_output(intent, session):
+    response = ""
+    if session['attributes']['compressions']:
+        response += "Perform 30 press compressions. "
+        if session['attributes']['cpr_first']:
+            response += cpr_instructions('compressions')
+    else:
+        response += "Give 2 rescue breaths. "
+        if session['attributes']['cpr_first']:
+            response += cpr_instructions('breaths')
+
+    response += "To begin say 'Ready'. "
+    return create_output(response, intent, session)
+
+def cpr_instructions(ins_type):
+    if ins_type == 'compressions':
+        return "Instructions: Person must be on a firm, flat surface. Push hard, push fast in the middle of the chest at least 2 inches deep and at least 100 compressions per minute. "
+    elif ins_type == 'breaths':
+        return "Instructions: Tilt the head up and lift the chin up. Pinch the nose shut then make a complete seal over the person's mouth. Blow in for about 1 second to make the chest clearly rise. Give the rescue breaths one after the other. If chest doesn't raise with rescue breaths, retilt the head and give another rescue breath. "
+    else:
+        return     
+
+def cpr_help(intent, session):
+    """
+    Things you need to keep track of:
+        Is this the first iteration?
+        Place in the iteration
+
+    """
+    response = ""
+    if 'cpr' in session['attributes']:
+        if 'Stage' in intent['slots'].keys():
+            # can be question
+            value = intent['slots']['Stage']['value']
+            if value == 'compressions':
+                return create_output(cpr_instructions('compressions'), intent, session)
+            elif value == 'breaths':
+                return create_output(cpr_instructions('breaths'), intent, session)
+            elif value == 'ready':
+                response += "When you are done, say done. "
+                return create_output(response, intent, session)
+            elif value == 'done':
+                if session['attributes']['compressions']:
+                    # compressions are done
+                    session['attributes']['compressions'] = False
+                    return create_cpr_output(intent, session)
+                else:
+                    session['attributes']['compressions'] = True
+                    session['attributes']['cpr_first'] = False
+                    return create_cpr_output(intent, session)
+
+    else:
+        session['attributes']['cpr'] = True
+        session['attributes']['compressions'] = True
+        session['attributes']['cpr_first'] = True
+        return create_cpr_output(intent, session)
+
+    # if 'cpr' in problem:
+    #     #Perform CPR
+    #     return create_output('sjldfhalksdjfhlka', intent, session)
+
+
+        
+        # Respond at any time: how do I do compressions/breaths
+        # "Restart XX" takes you to XX
+        # If user says "stop cpr" or "quit cpr" exit loop
+
+        # Begin chest compressions: perform 30 chest compressions
+        # if this is first time - explain compressions
+
+        #when youre ready say ready
+        #when youre done say done
+
+        # Begin rescue breaths: now give the the user two rescue breaths
+        #if this is the first time - explain rescue breaths
+
+        #when youre ready say ready
+        #when youre done say done
+
+        # loop
 
 def get_help(intent, session):
 
     problem = intent['slots']['Problem']['value']
 
     if 'cpr' in problem:
-        #Perform CPR
-        return wrong_output('sjldfhalksdjfhlka', intent, session)
+        return cpr_help(intent, session)
+
     elif ('choking' in problem) or 'choking' in session['attributes']:
         if 'unconcious' in problem:
-            # unconcious choking
             return call_911(intent, session)
         elif 'concious' in problem:
-            # concious choking
             return call_911(intent, session)
         else:
             #ask what kind
@@ -121,7 +199,7 @@ def get_help(intent, session):
                     "You can say 'Help me with': "\
                     "Checking an injured adult, choking, CPR, AED, controlling bleeding, " \
                     "Burns, Poisoning, Neck injuries, spinal injuries or strokes."
-        return wrong_output(speech_output, intent, session)           
+        return create_output(speech_output, intent, session)           
 
     return call_911(intent, session)
 
@@ -233,6 +311,8 @@ def on_intent(intent_request, session):
     # Dispatch to your skill's intent handlers
     if intent_name == "MyColorIsIntent":
         return set_color_in_session(intent, session)
+    elif intent_name == "CPR":
+        return cpr_help(intent, session)
     elif intent_name == "NeedHelp":
         return get_help(intent, session)
     elif intent_name == "WhatCanISay":

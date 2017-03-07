@@ -1,6 +1,15 @@
 {
   "intents":[
     {
+      "intent": "CPR",
+      "slots":[
+      {
+      "name": "Stage",
+      "type": "LITERAL"
+    }
+      ]
+    },
+    {
       "intent":"NeedHelp",
       "slots":[
         {
@@ -35,8 +44,17 @@
 NeedHelp I need help with {choking|Problem}
 NeedHelp help me with {choking|Problem}
 NeedHelp I need help with {checking an injured adult|Problem}
-NeedHelp theyre injured (injured|Problem)
+NeedHelp theyre injured {injured|Problem}
 NeedHelp someones injured {injured|Problem}
+NeedHelp the victim is unconcious {unconcious|Problem}
+NeedHelp the victim is concious {concious|Problem}
+
+CPR {ready|Stage}
+CPR {done|Stage}
+CPR How do I do {compressions|Stage}
+
+
+
 
 WhatCanISay what can I say
 
